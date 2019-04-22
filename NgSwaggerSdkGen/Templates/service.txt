@@ -3,7 +3,7 @@
 @model NgSwaggerSdkGen.Models.Gen.NgService;
 import { Injectable } from '@@angular/core';
 import { HttpClient } from '@@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Config } from '../config';
 import { @(string.Join(", ", Model.Models)) } from '../models';
@@ -82,7 +82,7 @@ export class @(Model.Name)Service {
         ).pipe(
           catchError((error: any, caught: Observable<any>) => {
             Config.onError.next({error: error, caught: caught});
-            return null;
+            return throwError(error);
           })
         );
     }
@@ -107,7 +107,7 @@ export class @(Model.Name)Service {
         ).pipe(
           catchError((error: any, caught: Observable<any>) => {
             Config.onError.next({error: error, caught: caught});
-            return null;
+            return throwError(error);
           })
         );
     }
@@ -120,7 +120,7 @@ export class @(Model.Name)Service {
         ).pipe(
           catchError((error: any, caught: Observable<any>) => {
             Config.onError.next({error: error, caught: caught});
-            return null;
+            return throwError(error);
           })
         );
     }
